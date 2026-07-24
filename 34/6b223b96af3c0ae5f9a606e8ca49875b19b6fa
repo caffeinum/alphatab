@@ -1,0 +1,19 @@
+scripts/skhd-cheatsheet.sh
+  s_e654161bf6a773::t_f334a8483b6054 43-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "346b223b96af3c0ae5f9a606e8ca49875b19b6fa",
+  "prompts": {},
+  "sessions": {
+    "s_e654161bf6a773": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7cb118ad-6f00-4b26-8ffb-d7dbbc436893",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Aleksey Bykhun <theisease@gmail.com>"
+    }
+  }
+}
