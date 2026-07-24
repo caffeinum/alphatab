@@ -1,0 +1,37 @@
+.gitignore
+  s_e654161bf6a773::t_0ebc97be48d8aa 1-3
+CLAUDE.md
+  s_e654161bf6a773::t_b4679804a73868 1-26
+LICENSE
+  s_e654161bf6a773::t_d5b6e4a50aac8c 1-21
+examples/skhdrc
+  s_e654161bf6a773::t_3545f8948806dc 1-39
+launchd/agent.plist.in
+  s_e654161bf6a773::t_9c18e5c3315239 1-21
+scripts/skhd-cheatsheet.sh
+  s_e654161bf6a773::t_006c23cacb10ff 1-147
+src/alphatab.swift
+  s_e654161bf6a773::t_3bc2a14aa6f80d 1-312
+src/helium-raise.swift
+  s_e654161bf6a773::t_2437c7743c7379 1-89
+Makefile
+  s_e654161bf6a773::t_ab06f696638ffa 1-51
+README.md
+  s_e654161bf6a773::t_2c60d086bf3c9d 1-146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "42f42adf051b0a864c9b4920517f58c79276989c",
+  "prompts": {},
+  "sessions": {
+    "s_e654161bf6a773": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7cb118ad-6f00-4b26-8ffb-d7dbbc436893",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Aleksey Bykhun <theisease@gmail.com>"
+    }
+  }
+}
