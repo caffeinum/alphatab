@@ -40,9 +40,9 @@ label_for() {
       local dir
       dir=$(printf '%s' "$cmd" | sed -E 's/.*helium-raise "([^"]+)".*/\1/')
       printf 'Helium — %s' "$(helium_profile_name "$dir")" ;;
-    *app-cycle\ next*) printf 'next app' ;;
-    *app-cycle\ prev*) printf 'prev app' ;;
-    *cheatsheet.sh*) printf 'this cheatsheet' ;;
+    *alphatab\ next*) printf 'next app' ;;
+    *alphatab\ prev*) printf 'prev app' ;;
+    *cheatsheet*) printf 'this cheatsheet' ;;
     *) printf '%s' "$cmd" ;;
   esac
 }
