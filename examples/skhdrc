@@ -1,0 +1,39 @@
+# run-or-raise setup
+# source: https://www.willharris.dev/garden/run-or-raise
+#
+# reasoning: frequently used apps get permanent, mnemonic shortcuts.
+# `/usr/bin/open -b` launches a closed app or activates a running app.
+# raycast remaps caps lock to ctrl + alt + shift + cmd, avoiding collisions
+# with normal application shortcuts.
+
+ctrl + alt + shift + cmd - c : /usr/bin/open -b com.cmuxterm.app
+ctrl + alt + shift + cmd - s : /usr/bin/open -b com.zarifpour.superconductor
+ctrl + alt + shift + cmd - f : /usr/bin/open -b com.apple.Safari
+ctrl + alt + shift + cmd - m : /usr/bin/open -b com.superhuman.electron
+ctrl + alt + shift + cmd - g : /usr/bin/open -b com.openai.codex
+ctrl + alt + shift + cmd - i : /usr/bin/open -b com.apple.MobileSMS
+ctrl + alt + shift + cmd - t : /usr/bin/open -b org.telegram.desktop
+
+# helium profiles — real run-or-raise, see helium-raise.
+# `open -b` raises the last-focused window and ignores the profile;
+# `--profile-directory` always spawns a new window. the helper finds the
+# profile's existing window through the accessibility api and raises that,
+# launching only when there isn't one.
+# hyper-h = Default ("You"), hyper-2 = "2027" (Profile 1).
+ctrl + alt + shift + cmd - h : ~/.local/bin/helium-raise "Default"
+ctrl + alt + shift + cmd - 2 : ~/.local/bin/helium-raise "Profile 1"
+
+# escape hatch for everything without its own key, see alphatab.
+# alphabetical rather than ⌘tab's most-recently-used order, so an app stays
+# the same number of presses away instead of shuffling every time.
+ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next
+ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev
+
+# cheatsheet, rendered from this file so it stays honest.
+ctrl + alt + shift + cmd - 0x2C : ~/.local/bin/skhd-cheatsheet
+
+# cmd - tab is swallowed on purpose: forces muscle memory onto the
+# hyperkey shortcuts above instead of falling back to the app switcher.
+# `true` is a no-op; skhd's event tap eats the keypress before the Dock.
+cmd - tab : true
+cmd + shift - tab : true
