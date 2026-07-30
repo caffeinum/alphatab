@@ -1,0 +1,21 @@
+README.md
+  s_e654161bf6a773::t_ad684bdebb03c3 54-66
+examples/skhdrc
+  s_e654161bf6a773::t_f2bc303c6ada33 3,5-15,17,19,22,24-29,31-37,39-42,44-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "bb7a6d80f5f49c20c1df5e2b32f2646f3e639152",
+  "prompts": {},
+  "sessions": {
+    "s_e654161bf6a773": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7cb118ad-6f00-4b26-8ffb-d7dbbc436893",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Aleksey Bykhun <theisease@gmail.com>"
+    }
+  }
+}
