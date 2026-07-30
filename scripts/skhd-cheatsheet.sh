@@ -49,7 +49,9 @@ label_for() {
 
 key_label() {
   case "$1" in
+    0x2B) printf ',' ;;
     0x2C) printf '/' ;;
+    0x2F) printf '.' ;;
     *) printf '%s' "$1" ;;
   esac
 }
@@ -72,7 +74,9 @@ strip_marker() { printf '%s' "${1%$alias_marker}"; }
 
 bindings=$(
   grep -E '^ctrl \+ alt \+ shift \+ cmd - ' "$rc" | while IFS= read -r line; do
-    key="${line%% :*}"; key="${key##*- }"
+    # keys never contain spaces, so dropping them absorbs any padding the
+    # config uses to line its colons up
+    key="${line%% :*}"; key="${key##*- }"; key="${key// /}"
     cmd="${line#*: }"
     printf '%s\t%s\t%s\n' \
       "$(key_label "$key")" "$(label_for "$(strip_marker "$cmd")")" "$(tier_of "$cmd")"

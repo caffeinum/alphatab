@@ -51,20 +51,29 @@ make install          # builds to ~/.local/bin, loads the LaunchAgent
 Then bind it in `~/.config/skhd/skhdrc`:
 
 ```
-ctrl + alt + shift + cmd - d : ~/.local/bin/alphatab next
-ctrl + alt + shift + cmd - a : ~/.local/bin/alphatab prev
+ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next
+ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev
 ```
 
-`examples/skhdrc` puts everything in one 3x4 block under the left hand, right
-next to caps lock — spatial memory rather than mnemonics, with `a`/`d` flanking
-`s` like movement keys:
+`examples/skhdrc` puts everything in one 3x4 block under the **right** hand.
+Caps lock is a left-pinky key, so binding the left side too makes it a
+one-handed claw — hold with the left, strike with the right. The right hand
+rests on `jkl;`, so the block is the 3x3 around it plus the row above:
 
 ```
-1 helium·you   2 helium·2027    3 cheatsheet
-q chatgpt      w safari         e superhuman
-a prev app     s superconductor d next app
-z telegram     x messages       c cmux
+7 helium·you      8 helium·2027  9 cheatsheet
+u superconductor  i messages     o chatgpt
+j next app        k prev app     l cmux
+m superhuman      , safari       . telegram
 ```
+
+Spatial memory over mnemonics, though a few survive: `i`=iMessage, `m`=mail,
+`o`=OpenAI, `j`/`k` the vim way.
+
+Bindings ending in `# alias` are older keys kept wired alongside the current
+layout. skhd hands the command to a shell, which treats it as a comment, so it
+costs nothing — and both the cheatsheet and the switcher's badges treat those
+keys as secondary rather than teaching you the layout you're replacing.
 
 `make uninstall` removes the binaries and unloads the agent.
 

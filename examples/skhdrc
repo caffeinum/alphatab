@@ -5,54 +5,68 @@
 # raycast remaps caps lock to ctrl + alt + shift + cmd, a combination no
 # application uses, so these never collide with anything.
 #
-# everything lives in one 3x4 block under the left hand, right next to caps
-# lock — spatial memory instead of mnemonics, though the mnemonics survive
-# where they can (w=web, e=email, s=superconductor, c=cmux, a/d=prev/next).
+# caps lock is under the left pinky, so the bindings live under the RIGHT hand
+# — hold with the left, strike with the right, no one-handed claw. right hand
+# rests on jkl;, so the block is the 3x3 around it plus the row above:
 #
-#     1 helium·you   2 helium·2027   3 cheatsheet
-#     q chatgpt      w safari        e superhuman
-#     a prev app     s superconductor d next app
-#     z telegram     x messages      c cmux
+#     7 helium·you      8 helium·2027   9 cheatsheet
+#     u superconductor  i messages      o chatgpt
+#     j next app        k prev app      l cmux
+#     m superhuman      , safari        . telegram
+#
+# mnemonics survive where they can: i=imessage, m=mail, o=openai, j/k=vim.
 
-# ── row 1 · browsers + help ─────────────────────────────────────────────────
+# ── row 7 · browsers + help ─────────────────────────────────────────────────
 # `open -b` raises the last-focused window and ignores the profile;
 # `--profile-directory` always spawns a new window. helium-raise finds the
 # profile's existing window through the accessibility api and raises that,
 # launching only when there isn't one.
-ctrl + alt + shift + cmd - 1 : ~/.local/bin/helium-raise "Default"
-ctrl + alt + shift + cmd - 2 : ~/.local/bin/helium-raise "Profile 1"
-ctrl + alt + shift + cmd - 3 : CHEATSHEET_BROWSER=net.imput.helium ~/.local/bin/skhd-cheatsheet
+ctrl + alt + shift + cmd - 7 : ~/.local/bin/helium-raise "Default"
+ctrl + alt + shift + cmd - 8 : ~/.local/bin/helium-raise "Profile 1"
+ctrl + alt + shift + cmd - 9 : CHEATSHEET_BROWSER=net.imput.helium ~/.local/bin/skhd-cheatsheet
 
-# ── row q · the other apps ──────────────────────────────────────────────────
-ctrl + alt + shift + cmd - q : /usr/bin/open -b com.openai.codex
-ctrl + alt + shift + cmd - w : /usr/bin/open -b com.apple.Safari
-ctrl + alt + shift + cmd - e : /usr/bin/open -b com.superhuman.electron
+# ── row u ───────────────────────────────────────────────────────────────────
+ctrl + alt + shift + cmd - u : /usr/bin/open -b com.zarifpour.superconductor
+ctrl + alt + shift + cmd - i : /usr/bin/open -b com.apple.MobileSMS
+ctrl + alt + shift + cmd - o : /usr/bin/open -b com.openai.codex
 
-# ── row a · navigation + main tool ──────────────────────────────────────────
-# a/d flank s like game movement keys. alphabetical rather than ⌘tab's
-# most-recently-used order, so an app stays the same number of presses away
-# instead of shuffling every time.
-ctrl + alt + shift + cmd - a : ~/.local/bin/alphatab prev
-ctrl + alt + shift + cmd - s : /usr/bin/open -b com.zarifpour.superconductor
-ctrl + alt + shift + cmd - d : ~/.local/bin/alphatab next
+# ── home row · navigation + terminal ────────────────────────────────────────
+# j/k are next/prev the vim way, under the index and middle fingers where the
+# hand already rests. alphabetical rather than ⌘tab's most-recently-used order,
+# so an app stays the same number of presses away instead of shuffling.
+ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next
+ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev
+ctrl + alt + shift + cmd - l : /usr/bin/open -b com.cmuxterm.app
 
-# ── row z · comms + terminal ────────────────────────────────────────────────
-ctrl + alt + shift + cmd - z : /usr/bin/open -b org.telegram.desktop
-ctrl + alt + shift + cmd - x : /usr/bin/open -b com.apple.MobileSMS
-ctrl + alt + shift + cmd - c : /usr/bin/open -b com.cmuxterm.app
+# ── bottom row ──────────────────────────────────────────────────────────────
+ctrl + alt + shift + cmd - m : /usr/bin/open -b com.superhuman.electron
+ctrl + alt + shift + cmd - 0x2B : /usr/bin/open -b com.apple.Safari
+ctrl + alt + shift + cmd - 0x2F : /usr/bin/open -b org.telegram.desktop
 
-# ── aliases · the old mnemonic keys, still wired ────────────────────────────
-# the block above is the layout worth learning, but these are already in the
+# ── aliases · earlier layouts, still wired ──────────────────────────────────
+# the block above is the one worth learning, but these are already in the
 # fingers. trailing `# alias` is a shell comment skhd passes through harmlessly,
 # and the cheatsheet renders anything marked with it as secondary.
+
+# the left-hand block this replaced
+ctrl + alt + shift + cmd - 1 : ~/.local/bin/helium-raise "Default" # alias
+ctrl + alt + shift + cmd - 2 : ~/.local/bin/helium-raise "Profile 1" # alias
+ctrl + alt + shift + cmd - 3 : CHEATSHEET_BROWSER=net.imput.helium ~/.local/bin/skhd-cheatsheet # alias
+ctrl + alt + shift + cmd - q : /usr/bin/open -b com.openai.codex # alias
+ctrl + alt + shift + cmd - w : /usr/bin/open -b com.apple.Safari # alias
+ctrl + alt + shift + cmd - e : /usr/bin/open -b com.superhuman.electron # alias
+ctrl + alt + shift + cmd - a : ~/.local/bin/alphatab prev # alias
+ctrl + alt + shift + cmd - s : /usr/bin/open -b com.zarifpour.superconductor # alias
+ctrl + alt + shift + cmd - d : ~/.local/bin/alphatab next # alias
+ctrl + alt + shift + cmd - z : /usr/bin/open -b org.telegram.desktop # alias
+ctrl + alt + shift + cmd - x : /usr/bin/open -b com.apple.MobileSMS # alias
+ctrl + alt + shift + cmd - c : /usr/bin/open -b com.cmuxterm.app # alias
+
+# the original mnemonic keys
 ctrl + alt + shift + cmd - h : ~/.local/bin/helium-raise "Default" # alias
 ctrl + alt + shift + cmd - f : /usr/bin/open -b com.apple.Safari # alias
 ctrl + alt + shift + cmd - g : /usr/bin/open -b com.openai.codex # alias
-ctrl + alt + shift + cmd - m : /usr/bin/open -b com.superhuman.electron # alias
-ctrl + alt + shift + cmd - i : /usr/bin/open -b com.apple.MobileSMS # alias
 ctrl + alt + shift + cmd - t : /usr/bin/open -b org.telegram.desktop # alias
-ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next # alias
-ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev # alias
 ctrl + alt + shift + cmd - 0x2C : CHEATSHEET_BROWSER=net.imput.helium ~/.local/bin/skhd-cheatsheet # alias
 
 # cmd - tab is swallowed on purpose: forces muscle memory onto the block above

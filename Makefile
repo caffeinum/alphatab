@@ -32,7 +32,13 @@ agent:
 	@sed 's|@LABEL@|$(LABEL)|g; s|@BIN@|$(BIN)/alphatab|g' \
 		launchd/agent.plist.in > $(PLIST)
 	@launchctl bootout gui/$$(id -u)/$(LABEL) 2>/dev/null || true
-	@launchctl bootstrap gui/$$(id -u) $(PLIST)
+	@# bootout returns before the service is actually gone, so bootstrapping
+	@# straight after it races and fails with EIO — retry until it takes
+	@n=0; until launchctl bootstrap gui/$$(id -u) $(PLIST) 2>/dev/null; do \
+		n=$$((n+1)); \
+		if [ $$n -ge 25 ]; then launchctl bootstrap gui/$$(id -u) $(PLIST); exit 1; fi; \
+		/bin/sleep 0.2; \
+	done
 	@echo "loaded $(LABEL)"
 
 restart:

@@ -67,12 +67,21 @@ func shortcutsByBundleID() -> [String: String] {
 
     for line in text.components(separatedBy: .newlines) {
         guard line.hasPrefix("ctrl + alt + shift + cmd - "),
+              // `# alias` marks an older key kept alive next to the current
+              // layout — badging both just teaches the thing being replaced
+              !line.hasSuffix("# alias"),
               let colon = line.range(of: " : ") else { continue }
         var key = String(line[line.index(line.startIndex, offsetBy: 26)..<colon.lowerBound])
             .trimmingCharacters(in: .whitespaces)
         let command = String(line[colon.upperBound...])
 
-        if key == "0x2C" { key = "/" }
+        key = key.replacingOccurrences(of: " ", with: "")  // colons may be padded
+        switch key {
+        case "0x2B": key = ","
+        case "0x2C": key = "/"
+        case "0x2F": key = "."
+        default: break
+        }
 
         var bundleID: String?
         if let range = command.range(of: "open -b ") {
