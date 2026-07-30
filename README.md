@@ -51,8 +51,19 @@ make install          # builds to ~/.local/bin, loads the LaunchAgent
 Then bind it in `~/.config/skhd/skhdrc`:
 
 ```
-ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next
-ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev
+ctrl + alt + shift + cmd - d : ~/.local/bin/alphatab next
+ctrl + alt + shift + cmd - a : ~/.local/bin/alphatab prev
+```
+
+`examples/skhdrc` puts everything in one 3x4 block under the left hand, right
+next to caps lock — spatial memory rather than mnemonics, with `a`/`d` flanking
+`s` like movement keys:
+
+```
+1 helium·you   2 helium·2027    3 cheatsheet
+q chatgpt      w safari         e superhuman
+a prev app     s superconductor d next app
+z telegram     x messages       c cmux
 ```
 
 `make uninstall` removes the binaries and unloads the agent.
