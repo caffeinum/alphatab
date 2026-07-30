@@ -54,17 +54,37 @@ key_label() {
   esac
 }
 
-# bound keys as "key<tab>label" — bash 3.2 on macOS has no associative arrays
+# bound keys as "key<tab>label<tab>tier" — bash 3.2 has no associative arrays.
+# a binding ending in `# alias` is an older key kept alive alongside the primary
+# layout; skhd hands the whole command to a shell, which treats it as a comment.
+# these live in functions because bash 3.2 — the /bin/bash this runs under —
+# cannot parse a `case` inside $( ), and the loop below is a command substitution
+alias_marker='# alias'
+
+tier_of() {
+  case "$1" in
+    *"$alias_marker") printf 'alias' ;;
+    *) printf 'primary' ;;
+  esac
+}
+
+strip_marker() { printf '%s' "${1%$alias_marker}"; }
+
 bindings=$(
   grep -E '^ctrl \+ alt \+ shift \+ cmd - ' "$rc" | while IFS= read -r line; do
     key="${line%% :*}"; key="${key##*- }"
     cmd="${line#*: }"
-    printf '%s\t%s\n' "$(key_label "$key")" "$(label_for "$cmd")"
+    printf '%s\t%s\t%s\n' \
+      "$(key_label "$key")" "$(label_for "$(strip_marker "$cmd")")" "$(tier_of "$cmd")"
   done
 )
 
 binding_for() {
   printf '%s' "$bindings" | awk -F'\t' -v k="$1" '$1==k{print $2; exit}'
+}
+
+tier_for() {
+  printf '%s' "$bindings" | awk -F'\t' -v k="$1" '$1==k{print $3; exit}'
 }
 
 # physical ansi layout. "width:cap" entries are the modifiers we draw but
@@ -87,8 +107,8 @@ render_row() {
     elif [ "$mod" = 1 ]; then
       printf '<div class="cap mod" style="flex:%s"><span class="c">%s</span></div>' "$width" "$key"
     elif [ -n "$label" ]; then
-      printf '<div class="cap bound" style="flex:%s"><span class="c">%s</span><span class="l">%s</span></div>' \
-        "$width" "$key" "$label"
+      printf '<div class="cap bound %s" style="flex:%s"><span class="c">%s</span><span class="l">%s</span></div>' \
+        "$(tier_for "$key")" "$width" "$key" "$label"
     else
       printf '<div class="cap" style="flex:%s"><span class="c">%s</span></div>' "$width" "$key"
     fi
@@ -127,6 +147,9 @@ p.sub{opacity:.55;margin:0 0 2.2rem;font-size:.9rem}
   font-size:.58rem;line-height:1.15;text-align:center;
   overflow-wrap:anywhere;hyphens:auto;opacity:.85;
 }
+.cap.bound.alias{border-color:color-mix(in srgb,var(--hit) 35%,transparent);background:none;border-style:dashed}
+.cap.bound.alias .c{color:color-mix(in srgb,var(--hit) 65%,transparent);font-weight:500}
+.cap.bound.alias .l{opacity:.45}
 .cap.hyper{border-color:var(--dim);background:color-mix(in srgb,currentColor 7%,transparent)}
 .cap.hyper .c{font-size:1rem;color:inherit}
 .cap.hyper .l{font-size:.58rem;opacity:.6}

@@ -41,6 +41,20 @@ ctrl + alt + shift + cmd - z : /usr/bin/open -b org.telegram.desktop
 ctrl + alt + shift + cmd - x : /usr/bin/open -b com.apple.MobileSMS
 ctrl + alt + shift + cmd - c : /usr/bin/open -b com.cmuxterm.app
 
+# ── aliases · the old mnemonic keys, still wired ────────────────────────────
+# the block above is the layout worth learning, but these are already in the
+# fingers. trailing `# alias` is a shell comment skhd passes through harmlessly,
+# and the cheatsheet renders anything marked with it as secondary.
+ctrl + alt + shift + cmd - h : ~/.local/bin/helium-raise "Default" # alias
+ctrl + alt + shift + cmd - f : /usr/bin/open -b com.apple.Safari # alias
+ctrl + alt + shift + cmd - g : /usr/bin/open -b com.openai.codex # alias
+ctrl + alt + shift + cmd - m : /usr/bin/open -b com.superhuman.electron # alias
+ctrl + alt + shift + cmd - i : /usr/bin/open -b com.apple.MobileSMS # alias
+ctrl + alt + shift + cmd - t : /usr/bin/open -b org.telegram.desktop # alias
+ctrl + alt + shift + cmd - j : ~/.local/bin/alphatab next # alias
+ctrl + alt + shift + cmd - k : ~/.local/bin/alphatab prev # alias
+ctrl + alt + shift + cmd - 0x2C : CHEATSHEET_BROWSER=net.imput.helium ~/.local/bin/skhd-cheatsheet # alias
+
 # cmd - tab is swallowed on purpose: forces muscle memory onto the block above
 # instead of falling back to the app switcher.
 # `true` is a no-op; skhd's event tap eats the keypress before the Dock.
